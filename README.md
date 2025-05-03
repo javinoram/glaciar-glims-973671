@@ -7,6 +7,7 @@ This repository holds the code used to model de the glacier GLIMS973671 located 
 </p>
 
 This projects is used as an entry point to learn and use the python library OGGM for a 
-paleoclimate reconstruction using the closed morreins. Also another method os ELA reconstruction are used.
+paleoclimate reconstruction using some morreins. 
+Also, for educational pourposes we add another methods for the ELA reconstruction.
 
 Author: Javier Norambuena Leiva
