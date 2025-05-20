@@ -1,5 +1,4 @@
 venv/
-*.xlsx
-*.xls
-*.csv
+graficos/
+.DS_Store
 *.png

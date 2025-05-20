@@ -10,7 +10,7 @@ thar_constants = [0.4, 0.425, 0.45, 0.475, 0.5]
 
 #Pares de altura de diferentes puntos de la geomorfologia
 #del glaciar
-list_of_pairs = [(600, 900), (580, 900), (490, 900), (470, 900)]
+list_of_pairs = [(571, 909), (477, 909), (462, 909), (605, 909)]
 
 
 for (ab, am) in list_of_pairs:
