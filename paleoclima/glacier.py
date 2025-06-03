@@ -7,6 +7,16 @@ ice_density = 917
 yield_stress = 45000
 step_length = 100
 
+ranges = []
+path_file = "glaciar.xlsx"
+for excel_sheet in ["mp1", "mp2", "mp3", "mp4"]:
+    df = pd.read_excel(path_file, sheet_name=excel_sheet).to_numpy().T
+    distancia = [ float(i) for i in df[0] ]
+    ranges.append( distancia[-1] )
+max_value = max(ranges)
+ranges = [ max_value - x for x in ranges ]
+labels = ["Estado actual glaciar", "MRN1", "MRN2", "MRN3"]
+
 def compute_b(lista, indx):
     return -(lista[indx-1] + lista[indx])
 
@@ -17,9 +27,8 @@ def compute_c(lista_1, lista_2, lista_3, lista_4, indx):
     return  aux1 - (aux2_1/aux2_2)
 
 path_file = "glaciar.xlsx"
-excel_sheet = "mp1"
-
-for excel_sheet in ["mp1", "mp2", "mp3", "mp4"]:
+fig, ax = plt.subplots()
+for j, excel_sheet in enumerate(["mp1", "mp2", "mp3", "mp4"]):
     df = pd.read_excel(path_file, sheet_name=excel_sheet).to_numpy().T
     distancia = [ float(i) for i in df[0] ]
     altura = [float(i) for i in df[1]]
@@ -29,7 +38,7 @@ for excel_sheet in ["mp1", "mp2", "mp3", "mp4"]:
     elevacion_hielo_l = []
     h_l = []
 
-    for i,altitud in enumerate(altura):
+    for i, altitud in enumerate(altura):
         if i == 0:
             altitud_l.append( altura[0] )
             elevacion_hielo_l.append( altura[0] )
@@ -46,8 +55,10 @@ for excel_sheet in ["mp1", "mp2", "mp3", "mp4"]:
 
             h_l.append( elevacion_hielo_l[i] - altitud )
 
-
-    fig, ax = plt.subplots()
-    ax.plot(distancia, altura, linewidth=2.0)
-    ax.plot(distancia, elevacion_hielo_l, linewidth=2.0)
-    fig.savefig(f"{excel_sheet}.png", dpi=fig.dpi)
+    if excel_sheet == "mp4":
+        ax.plot(distancia, altura, linewidth=1, color="black")
+    ax.plot(ranges[j] + np.array(distancia), elevacion_hielo_l, linewidth=1.0, label=labels[j])
+ax.set_xlabel("Distancia (m)")
+ax.set_ylabel("Altura (m)")
+ax.legend()
+fig.savefig(f"reconstruccion.png", dpi=fig.dpi)
