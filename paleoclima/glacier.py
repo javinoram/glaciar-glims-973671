@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 g = 9.81
 ice_density = 917
 yield_stress = 45000
-step_length = 100
+step_length = 14#100
 
 ranges = []
 path_file = "glaciar.xlsx"
@@ -16,6 +16,7 @@ for excel_sheet in ["mp1", "mp2", "mp3", "mp4"]:
 max_value = max(ranges)
 ranges = [ max_value - x for x in ranges ]
 labels = ["Estado actual glaciar", "MRN1", "MRN2", "MRN3"]
+color = ["red", "blue", "green", "orange"]
 
 def compute_b(lista, indx):
     return -(lista[indx-1] + lista[indx])
@@ -55,9 +56,10 @@ for j, excel_sheet in enumerate(["mp1", "mp2", "mp3", "mp4"]):
 
             h_l.append( elevacion_hielo_l[i] - altitud )
 
-    if excel_sheet == "mp4":
-        ax.plot(distancia, altura, linewidth=1, color="black")
-    ax.plot(ranges[j] + np.array(distancia), elevacion_hielo_l, linewidth=1.0, label=labels[j])
+    #if excel_sheet == "mp4":
+    ax.plot(distancia, altura, linewidth=1, color=color[j])
+    ax.plot(np.array(distancia), elevacion_hielo_l, linewidth=1.0, label=labels[j], linestyle='dashed', color=color[j])
+    #ax.plot(ranges[j] + np.array(distancia), elevacion_hielo_l, linewidth=1.0, label=labels[j])
 ax.set_xlabel("Distancia (m)")
 ax.set_ylabel("Altura (m)")
 ax.legend()

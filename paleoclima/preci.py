@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 
 def ohmura_eq(t, dt):
-    return 966.0+230*(t-dt) + 5.87*( (t-dt)**2 )
+    return 966 + 230*(t-dt) + 5.87*( (t-dt)**2 )
+    #return 645 + 296*(t-dt) + 9*( (t-dt)**2 )
 
 #Temperatura minima
 #t_paleo_melm = [5.079, 4.468, 4.3705]
@@ -11,16 +12,19 @@ def ohmura_eq(t, dt):
 #t_actual = 5.3
 
 #Temperatura media
-t_paleo_melm = [9.679, 9.068, 8.9705]
-t_paleo_thar = [9.5945, 9.5425, 9.3605]
-t_paleo_aar = [9.861, 9.5945, 9.406]
-t_actual = 9.9
+t_paleo_melm = [0.0, 0.0, 10.3865]
+t_paleo_thar = [10.5945, 10.5425, 10.3605]
+t_paleo_aar = [10.861, 10.5945, 10.406]
+t_actual = 10.9
 
 #Temperatura maxima
 #t_paleo_melm = [15.579, 14.968, 14.8705]
 #t_paleo_thar = [15.4945, 15.4425, 15.2605]
 #t_paleo_aar = [15.761, 15.4945, 15.306]
 #t_actual = 15.8
+
+delta = 0.0 
+print("actual: ", ohmura_eq(t_actual, delta) )
 
 for t in t_paleo_melm:
     delta = -(t_actual - t) 

@@ -7,10 +7,10 @@ def temp_eq(t_actual, var_h):
 
 
 #[0]: Actual, [1]: MR1, [2]:MR2, [3]:MR3
-melm = (np.array([571, 477, 462]) - 605)/1000.0
+melm = (np.array([0, 0, 612]) - 691)/1000.0
 thar = (np.array([693, 685, 657]) - 740)/1000.0
 aar = (np.array([690, 649, 620]) - 696)/1000.0
-temperatures = np.array([15.8, 9.9, 5.3])
+temperatures = np.array([16.4, 10.9, 7.3])
 
 print("MELM reconstruction")
 for t in temperatures:
